@@ -10,7 +10,7 @@ jobs:
         steps:
             - name: Check day of week
               id: check_day
-              run: echo "::set-output name=day::$(date +'%A')"
+              run: echo "DAY_OF_WEEK=$(date +'%A') >> $GITHUB_OUTPUT"
             - name: Fail if it`s a Friday
-              if: steps.check_day.outputs.day == 'Friday'
+              if: steps.check_day.outputs.DAY_OF_WEEK == 'Friday'
               run: exit 1
