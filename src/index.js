@@ -1,5 +1,7 @@
-const { sum } = require("./components/math.js")
+const { sum, sub } = require("./components/math.js")
 
 const sumResult = sum(3,5);
+const subResult = sub(3,5);
 
-console.log(sumResult)
+console.log(`The SUM result is: ${sumResult}`)
+console.log(`The SUB result is: ${subResult}`)
