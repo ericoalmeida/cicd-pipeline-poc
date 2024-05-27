@@ -1,7 +1,7 @@
-const add = (valueOne, valueTwo) => {
+const sum = (valueOne, valueTwo) => {
     return valueOne + valueTwo;
 }
 
 module.exports = {
-    add
+    sum
 };

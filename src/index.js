@@ -1,5 +1,5 @@
-const { add } = require("./components/math.js")
+const { sum } = require("./components/math.js")
 
-const sumResult = add(3,5);
+const sumResult = sum(3,5);
 
 console.log(sumResult)
