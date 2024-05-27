@@ -1,0 +1,16 @@
+name: Prevent merge on fridays
+
+on:
+    pull_request: 
+        types: [opened, reopened, synchronize]
+
+jobs:
+    check_day_of_week:
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Check day of week
+              id: check_day
+              run: echo "::set-output name=day::$(date +'%A')"
+            - name: Fail if it`s a Friday
+              if: steps.check_day.outputs.day == 'Friday'
+              run: exit 1
