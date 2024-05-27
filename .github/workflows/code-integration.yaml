@@ -2,8 +2,7 @@ name: Code integration
 
 on:
     pull_request: 
-        types: [opened, reopened]
-    push:
+        types: [opened, reopened, synchronize]
         branches:
             - '**'
 
