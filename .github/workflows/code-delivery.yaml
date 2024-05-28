@@ -5,23 +5,28 @@ on:
         workflows: ["Code integration"]
         types:
             - completed
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
 jobs:
     deploy:
-        if: ${{github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main'}}
-        runs-on: ubuntu-22.04
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-            - name: Log in to Docker HUb
-              uses: docker/login-action@v2
-              with:
-                username: ${{ secrets.DOCKER_USERNAME }}
-                password: ${{ secrets.DOCKER_PASSWORD }}
-            - name: Setup Docker buildx
-              uses: docker/setup-buildx-action@v2
-            - name: Build and push Docker image
-              uses: docker/build-push-action@v5
-              with:
-                context: .
-                push: true
-                tags: ${{ secrets.DOCKER_USERNAME }}/cicd_pipeline_poc:latest
+      runs-on: ubuntu-22.04
+      if: ${{github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main'}}
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        - name: Log in to Docker HUb
+          uses: docker/login-action@v3
+          with:
+            username: ${{ env.DOCKER_USERNAME }}
+            password: ${{ env.DOCKER_PASSWORD }}
+        - name: Setup Docker buildx
+          uses: docker/setup-buildx-action@v3
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v5
+          with:
+            context: .
+            push: true
+            tags: ${{ env.DOCKER_USERNAME }}/cicd_pipeline_poc:latest
