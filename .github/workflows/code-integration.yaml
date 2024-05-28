@@ -5,6 +5,10 @@ on:
         types: [opened, reopened, synchronize]
         branches:
             - '**'
+    push:
+        branches:
+            - 'main'
+            - 'develop'
 
 jobs:
     unitary_tests:
