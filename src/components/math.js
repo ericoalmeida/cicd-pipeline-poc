@@ -10,8 +10,13 @@ const mult = (valueOne, valueTwo) => {
     return valueOne * valueTwo;
 }
 
+const div = (valueOne, valueTwo) => {
+    return valueOne / valueTwo;
+}
+
 module.exports = {
     sum,
     sub,
-    mult
+    mult,
+    div
 };
